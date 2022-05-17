@@ -1,2 +1,4 @@
 .idea
-db
+db/stream.*
+node_modules
+.DS_Store
