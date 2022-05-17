@@ -3,13 +3,13 @@ const app = express();
 const bodyParser = require("body-parser");
 const db = require("./db/update");
 
-const PORT = 4201;
+const PORT = 4200;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-   res.status(200).json({success: true});
+   res.send("Express!");
 });
 
 app.post("/update", async (req, res) => {
