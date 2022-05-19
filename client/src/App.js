@@ -1,15 +1,16 @@
-import './App.css';
 import UpdatesList from "./components/updatesList";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import SingleUpdatePage from "./components/singleUpdatePage";
 
 function App() {
   return (
-    <div className="App">
-      <div className="app-container">
+      <BrowserRouter>
           <header></header>
-          <h1>Nikhil's Stream of Thots 🌊</h1>
-          <UpdatesList />
-      </div>
-    </div>
+          <Routes>
+              <Route path="/" element={<UpdatesList />} />
+              <Route path="updates/:timestamp" element={<SingleUpdatePage />} />
+          </Routes>
+      </BrowserRouter>
   );
 }
 

@@ -26,6 +26,12 @@ app.get("/updates", async (req, res) => {
    res.status(200).json({updates});
 });
 
+app.get("/update_by_timestamp", async (req, res) => {
+   const timestamp = req.query.timestamp;
+   const update = await db.getUpdateByTimestamp(timestamp);
+   res.status(200).json({update});
+});
+
 app.post("/update", async (req, res) => {
    const results = await db.createUpdate(req.body);
    res.status(201).json({ id: results[0] });

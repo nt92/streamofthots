@@ -16,6 +16,13 @@ function getSomeUpdates(num, offset) {
         .offset(offset);
 }
 
+function getUpdateByTimestamp(timestamp) {
+    return connectedKnex("updates")
+        .select("*")
+        .where("timestamp", timestamp)
+        .limit(1);
+}
+
 function deleteUpdate(timestamp) {
     return connectedKnex("updates").where("timestamp", timestamp).del();
 }
@@ -24,5 +31,6 @@ module.exports = {
     createUpdate,
     getAllUpdates,
     getSomeUpdates,
+    getUpdateByTimestamp,
     deleteUpdate
 }

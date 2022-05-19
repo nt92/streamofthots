@@ -19,3 +19,12 @@ export const getSomeUpdates = async (num, offset) => {
     })
     return res.data
 }
+
+export const getUpdateByTimestamp = async (timestamp) => {
+    const res = await axios.request({
+        method: 'get',
+        url: `${baseURL}/update_by_timestamp?timestamp=${timestamp}`,
+        transformResponse: res => JSON.parse(res)
+    })
+    return res.data
+}

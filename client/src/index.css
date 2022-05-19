@@ -12,10 +12,6 @@ code {
     monospace;
 }
 
-.app-container {
-  text-align: start;
-}
-
 /* Main Feed */
 header, h1, .list-container {
   width: calc(100% - 32px);
