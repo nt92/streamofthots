@@ -26,6 +26,7 @@ function UpdatesList() {
                     <div className="feed">
                         {updates.updates.map(({timestamp, updateText, title}, index) => (
                             <UpdateRow
+                                key={index}
                                 index={index}
                                 timestamp={timestamp}
                                 updateText={updateText}
