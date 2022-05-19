@@ -8,6 +8,14 @@ function getAllUpdates() {
     return connectedKnex("updates").select("*");
 }
 
+function getSomeUpdates(num, offset) {
+    return connectedKnex("updates")
+        .select("*")
+        .orderBy("timestamp", "desc")
+        .limit(num)
+        .offset(offset);
+}
+
 function deleteUpdate(timestamp) {
     return connectedKnex("updates").where("timestamp", timestamp).del();
 }
@@ -15,5 +23,6 @@ function deleteUpdate(timestamp) {
 module.exports = {
     createUpdate,
     getAllUpdates,
+    getSomeUpdates,
     deleteUpdate
 }
