@@ -2,10 +2,18 @@ import {Link} from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 
 function UpdateRow(props) {
+    const date = new Date(props.timestamp*1000)
+    const dayAndTime =
+        (date.getMonth()+1) +
+        "/" + date.getDate() +
+        "/" + date.getFullYear() +
+        " " + date.getHours() +
+        ":" +date.getMinutes();
+
     return (
         <div key={props.index} className="update">
             <div key={props.timestamp} className="update-time">
-                <Link to={`updates/${props.timestamp}`}>{props.timestamp}</Link>
+                <Link to={`updates/${props.timestamp}`}>{dayAndTime}</Link>
             </div>
             <div className="update-content">
                 <div key={props.title} className="update-title">

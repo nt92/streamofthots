@@ -13,10 +13,10 @@ function SingleUpdatePage() {
             setUpdate(initialData)
         };
         fetchInitialData().then();
-    }, []);
+    }, [timestamp]);
 
     return (
-        <div className="list-container">
+        <main>
             {update.length !== 0 ? (
                 <div className="feed">
                     <UpdateRow
@@ -26,7 +26,7 @@ function SingleUpdatePage() {
                     />
                 </div>
             ) : null}
-        </div>
+        </main>
     );
 }
 
