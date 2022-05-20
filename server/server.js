@@ -14,18 +14,6 @@ app.get("/", (req, res) => {
    res.send("Express!");
 });
 
-app.get("/all_updates", async (req, res) => {
-   const updates = await db.getAllUpdates();
-   res.status(200).json({updates});
-})
-
-app.get("/updates", async (req, res) => {
-   const num = req.query.num ?? 10;
-   const offset = req.query.offset ?? 0;
-   const updates = await db.getSomeUpdates(num, offset);
-   res.status(200).json({updates});
-});
-
 app.get("/updates_search", async (req, res) => {
    const num = req.query.num ?? 10;
    const offset = req.query.offset ?? 0;
@@ -33,6 +21,14 @@ app.get("/updates_search", async (req, res) => {
    const updates = await db.getSomeUpdatesSearch(num, offset, search);
    res.status(200).json({updates});
 });
+
+app.get("/updates_search_count", async (req, res) => {
+   const num = req.query.num ?? 10;
+   const offset = req.query.offset ?? 0;
+   const search = req.query.search ?? "";
+   const count = await db.getSomeUpdatesSearchCount(num, offset, search);
+   res.status(200).json({count});
+})
 
 app.get("/update_by_timestamp", async (req, res) => {
    const timestamp = req.query.timestamp;

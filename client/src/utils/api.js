@@ -2,19 +2,19 @@ import axios from 'axios';
 
 export const baseURL = "http://localhost:4200"
 
-export const getAllUpdates = async () => {
+export const getSomeUpdatesSearch = async (num, offset, search) => {
     const res = await axios.request({
         method: 'get',
-        url: `${baseURL}/all_updates`,
+        url: `${baseURL}/updates_search?num=${num}&offset=${offset}&search=${search}`,
         transformResponse: res => JSON.parse(res)
     })
     return res.data
 }
 
-export const getSomeUpdatesSearch = async (num, offset, search) => {
+export const getSomeUpdatesSearchCount = async (num, offset, search) => {
     const res = await axios.request({
         method: 'get',
-        url: `${baseURL}/updates_search?num=${num}&offset=${offset}&search=${search}`,
+        url: `${baseURL}/updates_search_count?num=${num}&offset=${offset}&search=${search}`,
         transformResponse: res => JSON.parse(res)
     })
     return res.data

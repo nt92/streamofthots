@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {getSomeUpdatesSearch} from "../utils/api";
+import {getSomeUpdatesSearch, getSomeUpdatesSearchCount} from "../utils/api";
 import UpdateRow from "./updateRow";
 import {useSearchParams} from "react-router-dom";
 
 function UpdatesList() {
-    const [updates, setUpdates] = useState([])
+    const [updates, setUpdates] = useState([]);
+    const [updatesCount, setUpdatesCount] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
 
     async function fetchUpdates(event) {
@@ -12,6 +13,9 @@ function UpdatesList() {
         const search = searchParams.get("search");
         const data = await getSomeUpdatesSearch(10, 0, search);
         setUpdates(data);
+        const countData = await getSomeUpdatesSearchCount(10, 0, search);
+        const count = Object.values(countData.count[0])[0]; // 🤦🏽‍
+        setUpdatesCount(count);
     }
 
     useEffect(() => {
@@ -19,13 +23,17 @@ function UpdatesList() {
             const search = searchParams.get("search") || ""
             const initialData = await getSomeUpdatesSearch(10, 0, search);
             setUpdates(initialData);
+            const countData = await getSomeUpdatesSearchCount(10, 0, search);
+            const count = Object.values(countData.count[0])[0]; // 🤦🏽‍
+            setUpdatesCount(count);
         }
         fetchInitialData().then();
-    });
+    }, [searchParams]);
 
     return (
         <div>
             <h1>Nikhil's Stream of Thots 🌊</h1>
+            <p className="subtitle">{updatesCount} matching updates</p>
             <main>
                 <form
                     className="search"

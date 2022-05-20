@@ -4,22 +4,21 @@ function createUpdate(update) {
     return connectedKnex("updates").insert(update);
 }
 
-function getAllUpdates() {
-    return connectedKnex("updates").select("*");
-}
-
-function getSomeUpdates(num, offset) {
+function getSomeUpdatesSearch(num, offset, search) {
+    const searchTerm = "%"+search+"%"
     return connectedKnex("updates")
         .select("*")
+        .whereLike("title", searchTerm)
+        .orWhereLike("updateText", searchTerm)
         .orderBy("timestamp", "desc")
         .limit(num)
         .offset(offset);
 }
 
-function getSomeUpdatesSearch(num, offset, search) {
+function getSomeUpdatesSearchCount(num, offset, search) {
     const searchTerm = "%"+search+"%"
     return connectedKnex("updates")
-        .select("*")
+        .count("*")
         .whereLike("title", searchTerm)
         .orWhereLike("updateText", searchTerm)
         .orderBy("timestamp", "desc")
@@ -42,9 +41,8 @@ function deleteUpdate(timestamp) {
 
 module.exports = {
     createUpdate,
-    getAllUpdates,
-    getSomeUpdates,
     getSomeUpdatesSearch,
+    getSomeUpdatesSearchCount,
     getUpdateByTimestamp,
     deleteUpdate
 }
