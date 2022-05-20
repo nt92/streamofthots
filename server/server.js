@@ -32,9 +32,15 @@ app.get("/update_by_timestamp", async (req, res) => {
    res.status(200).json({update});
 });
 
-app.post("/update", async (req, res) => {
+app.post("/create", async (req, res) => {
    const results = await db.createUpdate(req.body);
    res.status(201).json({ id: results[0] });
 });
+
+app.delete("/delete", async (req, res) => {
+   const timestamp = req.query.timestamp
+   const results = await db.deleteUpdate(timestamp);
+   res.status(201).json({ id: results[0] });
+})
 
 app.listen(PORT, () => console.log('hello world!'))

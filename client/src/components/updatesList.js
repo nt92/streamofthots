@@ -5,11 +5,6 @@ import UpdateRow from "./updateRow";
 function UpdatesList() {
     const [updates, setUpdates] = useState([])
 
-    const handleGetUpdates = async () => {
-        const data = await getSomeUpdates(10, 1);
-        setUpdates(data);
-    };
-
     useEffect(() => {
         async function fetchInitialData() {
             const initialData = await getSomeUpdates(10, 0);
@@ -21,7 +16,7 @@ function UpdatesList() {
     return (
         <div>
             <h1>Nikhil's Stream of Thots 🌊</h1>
-            <div className="list-container">
+            <main>
                 {updates.length !== 0 ? (
                     <div className="feed">
                         {updates.updates.map(({timestamp, updateText, title}, index) => (
@@ -35,7 +30,7 @@ function UpdatesList() {
                         ))}
                     </div>
                 ) : null}
-            </div>
+            </main>
         </div>
     );
 }

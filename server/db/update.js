@@ -24,7 +24,9 @@ function getUpdateByTimestamp(timestamp) {
 }
 
 function deleteUpdate(timestamp) {
-    return connectedKnex("updates").where("timestamp", timestamp).del();
+    return connectedKnex("updates")
+        .where("timestamp", timestamp)
+        .del();
 }
 
 module.exports = {
