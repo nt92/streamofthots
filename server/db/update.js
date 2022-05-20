@@ -15,15 +15,13 @@ function getSomeUpdatesSearch(num, offset, search) {
         .offset(offset);
 }
 
-function getSomeUpdatesSearchCount(num, offset, search) {
+function getSomeUpdatesSearchCount(search) {
     const searchTerm = "%"+search+"%"
     return connectedKnex("updates")
         .count("*")
         .whereLike("title", searchTerm)
         .orWhereLike("updateText", searchTerm)
-        .orderBy("timestamp", "desc")
-        .limit(num)
-        .offset(offset);
+        .orderBy("timestamp", "desc");
 }
 
 function getUpdateByTimestamp(timestamp) {

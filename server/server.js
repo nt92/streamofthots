@@ -23,10 +23,8 @@ app.get("/updates_search", async (req, res) => {
 });
 
 app.get("/updates_search_count", async (req, res) => {
-   const num = req.query.num ?? 10;
-   const offset = req.query.offset ?? 0;
    const search = req.query.search ?? "";
-   const count = await db.getSomeUpdatesSearchCount(num, offset, search);
+   const count = await db.getSomeUpdatesSearchCount(search);
    res.status(200).json({count});
 })
 

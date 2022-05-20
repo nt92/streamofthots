@@ -1,34 +1,56 @@
 import React, { useState, useEffect } from "react";
+import {useSearchParams} from "react-router-dom";
 import {getSomeUpdatesSearch, getSomeUpdatesSearchCount} from "../utils/api";
 import UpdateRow from "./updateRow";
-import {useSearchParams} from "react-router-dom";
 
 function UpdatesList() {
+    const ITEMS_PER_PAGE = 10
+
     const [updates, setUpdates] = useState([]);
     const [updatesCount, setUpdatesCount] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
 
     async function fetchUpdates(event) {
         event.preventDefault()
+        const page = searchParams.get("page") || 0;
+        const itemOffset = page * ITEMS_PER_PAGE;
         const search = searchParams.get("search");
-        const data = await getSomeUpdatesSearch(10, 0, search);
+        const data = await getSomeUpdatesSearch(ITEMS_PER_PAGE, itemOffset, search);
         setUpdates(data);
-        const countData = await getSomeUpdatesSearchCount(10, 0, search);
+        const countData = await getSomeUpdatesSearchCount(search);
         const count = Object.values(countData.count[0])[0]; // 🤦🏽‍
         setUpdatesCount(count);
     }
 
     useEffect(() => {
         async function fetchInitialData() {
+            const page = searchParams.get("page") || 0;
+            const itemOffset = page * ITEMS_PER_PAGE;
             const search = searchParams.get("search") || ""
-            const initialData = await getSomeUpdatesSearch(10, 0, search);
+            const initialData = await getSomeUpdatesSearch(ITEMS_PER_PAGE, itemOffset, search);
             setUpdates(initialData);
-            const countData = await getSomeUpdatesSearchCount(10, 0, search);
+            const countData = await getSomeUpdatesSearchCount(search);
             const count = Object.values(countData.count[0])[0]; // 🤦🏽‍
             setUpdatesCount(count);
         }
         fetchInitialData().then();
     }, [searchParams]);
+
+    const handleBackClick = () => {
+        let pageNum = parseInt(searchParams.get("page")) || 0;
+        let search = searchParams.get("search") || "";
+        pageNum--;
+        const page = pageNum.toString()
+        setSearchParams({search, page})
+    };
+
+    const handleForwardClick = () => {
+        let pageNum = parseInt(searchParams.get("page")) || 0;
+        let search = searchParams.get("search") || "";
+        pageNum++;
+        const page = pageNum.toString()
+        setSearchParams({search, page})
+    };
 
     return (
         <div>
@@ -64,6 +86,14 @@ function UpdatesList() {
                         ))}
                     </div>
                 ) : null}
+                <div className="pagination">
+                    {parseInt(searchParams.get("page") || 0) > 0 ? (
+                        <button onClick={handleBackClick}>⏪</button>
+                    ): null}
+                    {parseInt(searchParams.get("page") || 0) <= (updatesCount / ITEMS_PER_PAGE - 1) ? (
+                        <button onClick={handleForwardClick}>⏩</button>
+                    ): null}
+                </div>
             </main>
         </div>
     );

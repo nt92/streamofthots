@@ -11,10 +11,10 @@ export const getSomeUpdatesSearch = async (num, offset, search) => {
     return res.data
 }
 
-export const getSomeUpdatesSearchCount = async (num, offset, search) => {
+export const getSomeUpdatesSearchCount = async (search) => {
     const res = await axios.request({
         method: 'get',
-        url: `${baseURL}/updates_search_count?num=${num}&offset=${offset}&search=${search}`,
+        url: `${baseURL}/updates_search_count?search=${search}`,
         transformResponse: res => JSON.parse(res)
     })
     return res.data
