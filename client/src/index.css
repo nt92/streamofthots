@@ -12,6 +12,20 @@ code {
     monospace;
 }
 
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 1em;
+}
+
 /* Main Feed */
 header, h1, main {
   width: calc(100% - 32px);

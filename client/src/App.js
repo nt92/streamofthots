@@ -6,7 +6,13 @@ import AuthorPage from "./components/authorPage";
 function App() {
   return (
       <BrowserRouter>
-          <header></header>
+          <header>
+              <a href="/" className="logo">streamofthots</a>
+              <nav>
+                  {/*<a href="/about/">about</a>*/}
+                  {/*<button>light/dark</button>*/}
+              </nav>
+          </header>
           <Routes>
               <Route path="/" element={<UpdatesList />} />
               <Route path="/author" element={<AuthorPage />} />

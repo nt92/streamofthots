@@ -20,9 +20,17 @@ app.get("/all_updates", async (req, res) => {
 })
 
 app.get("/updates", async (req, res) => {
-   const num = req.query.num;
+   const num = req.query.num ?? 10;
    const offset = req.query.offset ?? 0;
    const updates = await db.getSomeUpdates(num, offset);
+   res.status(200).json({updates});
+});
+
+app.get("/updates_search", async (req, res) => {
+   const num = req.query.num ?? 10;
+   const offset = req.query.offset ?? 0;
+   const search = req.query.search ?? "";
+   const updates = await db.getSomeUpdatesSearch(num, offset, search);
    res.status(200).json({updates});
 });
 

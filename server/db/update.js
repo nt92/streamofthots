@@ -16,6 +16,17 @@ function getSomeUpdates(num, offset) {
         .offset(offset);
 }
 
+function getSomeUpdatesSearch(num, offset, search) {
+    const searchTerm = "%"+search+"%"
+    return connectedKnex("updates")
+        .select("*")
+        .whereLike("title", searchTerm)
+        .orWhereLike("updateText", searchTerm)
+        .orderBy("timestamp", "desc")
+        .limit(num)
+        .offset(offset);
+}
+
 function getUpdateByTimestamp(timestamp) {
     return connectedKnex("updates")
         .select("*")
@@ -33,6 +44,7 @@ module.exports = {
     createUpdate,
     getAllUpdates,
     getSomeUpdates,
+    getSomeUpdatesSearch,
     getUpdateByTimestamp,
     deleteUpdate
 }

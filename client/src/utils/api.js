@@ -11,10 +11,10 @@ export const getAllUpdates = async () => {
     return res.data
 }
 
-export const getSomeUpdates = async (num, offset) => {
+export const getSomeUpdatesSearch = async (num, offset, search) => {
     const res = await axios.request({
         method: 'get',
-        url: `${baseURL}/updates?num=${num}&offset=${offset}`,
+        url: `${baseURL}/updates_search?num=${num}&offset=${offset}&search=${search}`,
         transformResponse: res => JSON.parse(res)
     })
     return res.data
