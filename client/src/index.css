@@ -1,15 +1,64 @@
+/* Colors */
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /*EXPERIMENTATION*/
+  /*--primary-bg: #E7E9F9;*/
+  /*--primary-text: #151416;*/
+  /*--secondary-bg: #eeeef3;*/
+  /*--secondary-text: #848484;*/
+  /*--hover-bg: #4d4e62;*/
+  /*--active-bg: #3A3B47;*/
+
+  /*--dark-primary-bg: #d4a373;*/
+  /*--dark-primary-text: #ebebeb;*/
+  /*--dark-secondary-bg: #30373a;*/
+  /*--dark-secondary-text: #a4a7a9;*/
+  /*--dark-hover-bg: #474c50;*/
+  /*--dark-active-bg: #626569;*/
+
+  --primary-bg: #fdfeff;
+  --primary-text: #111111;
+  --secondary-bg: #eeeef3;
+  --secondary-text: #848484;
+  --hover-bg: #dde1e5;
+  --active-bg: #cdcfd2;
+
+  --dark-primary-bg: #141516;
+  --dark-primary-text: #ebebeb;
+  --dark-secondary-bg: #30373a;
+  --dark-secondary-text: #a4a7a9;
+  --dark-hover-bg: #474c50;
+  --dark-active-bg: #626569;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.dark {
+  --primary-bg: var(--dark-primary-bg);
+  --primary-text: var(--dark-primary-text);
+  --secondary-bg: var(--dark-secondary-bg);
+  --secondary-text: var(--dark-secondary-text);
+  --hover-bg: var(--dark-hover-bg);
+  --active-bg: var(--dark-active-bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(.light) {
+    --primary-bg: var(--dark-primary-bg);
+    --primary-text: var(--dark-primary-text);
+    --secondary-bg: var(--dark-secondary-bg);
+    --secondary-text: var(--dark-secondary-text);
+    --hover-bg: var(--dark-hover-bg);
+    --active-bg: var(--dark-active-bg);
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  color: var(--primary-text);
+  background: var(--primary-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 header {
@@ -17,6 +66,33 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  height: 40px;
+}
+
+header .logo {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+header .light-dark {
+  color: var(--secondary-text);
+}
+
+header a,
+header button {
+  display: inline;
+  cursor: pointer;
+  color: var(--primary-text);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  text-decoration: none;
+  padding: .5em 0;
+}
+
+header a:hover,
+header button:hover {
+  text-decoration: underline;
 }
 
 nav {
@@ -24,6 +100,91 @@ nav {
   flex-direction: row-reverse;
   align-items: center;
   gap: 1em;
+}
+
+/* Markdown Styling */
+
+.update h1,
+.update h2,
+.update h3 {
+  margin: .75em 0 .5em 0;
+  line-height: 1.4em;
+}
+
+.update h1 {
+  font-size: 1.75em;
+}
+
+.update h2 {
+  font-size: 1.5em;
+}
+
+.update h3 {
+  font-size: 1.2em;
+}
+
+.update h4,
+.update h5,
+.update h6 {
+  font-size: 1em;
+}
+
+.update p,
+.update li {
+  line-height: 1.5em;
+  max-width: 64ch;
+}
+
+.update strike {
+  color: var(--secondary-text);
+}
+
+.update img {
+  max-width: 100%;
+  max-height: 500px;
+  border-radius: 6px;
+}
+
+.update a {
+  color: var(--primary-text);
+  text-decoration: underline;
+}
+
+.update ul,
+.update ol {
+  padding-left: 3ch;
+}
+
+.update pre,
+.update code {
+  background: var(--hover-bg);
+  font-size: 1em;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+  word-break: initial;
+}
+
+.update pre {
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 12px 8px;
+  overflow-x: auto;
+}
+
+.update code {
+  padding: 1px 5px;
+  border-radius: 6px;
+}
+
+.update pre code {
+  padding: 0;
+}
+
+.update blockquote {
+  margin: 0;
+  border-left: 4px solid var(--active-bg);
+  padding-left: 1em;
+  display: block;
 }
 
 /* Main Feed */
@@ -38,27 +199,77 @@ header, h1, main, .subtitle {
   font-style: italic;
 }
 
-.update {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 1.5em;
+.search {
+  margin: 24px 0 24px 0;
 }
 
-.update-time {
-  width: 130px;
-  font-size: 13px;
+/* Mobile support for feed */
+@media only screen and (min-width: 760px) {
+  .update {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1.5em;
+  }
+
+  .update-time {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 135px;
+    font-size: 14px;
+  }
+
+  .update-content {
+    width: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  .update-content :first-child {
+    margin-top: -3px;
+  }
 }
 
 .update-content {
-  width: 0;
-  flex-grow: 1;
-  flex-shrink: 1;
+  overflow-wrap: break-word;
 }
 
-.title-text {
-  margin-top: -3px;
+.update-time a {
+  color: var(--secondary-text);
+  text-decoration: none;
+}
+
+.update-time a:hover {
+  text-decoration: underline;
+}
+
+.pagination {
+  float: right;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  margin-bottom: 3em;
+}
+
+.pagination-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  height: 1.5em;
+  width: 1.5em;
+  border-radius: 50%;
+  border: none;
+  background: var(--secondary-bg);
+}
+
+.pagination-button:hover {
+  background: var(--hover-bg);
+  text-decoration: none;
 }
 
 /* Author Page */
@@ -70,7 +281,7 @@ form textarea {
 }
 
 form input, form textarea {
-  background: #dde1e5;
+  background: var(--hover-bg);
   display: block;
   border-radius: 6px;
   border: 0;
@@ -82,13 +293,26 @@ form input, form textarea {
 form button[type="submit"] {
   border-radius: 6px;
   border: 0;
-  margin-top: 0.5em;
+  color: var(--primary-bg);
+  background: var(--primary-text);
+  margin-bottom: 2em;
   float: right;
   cursor: pointer;
 }
 
+form button[type="submit"]:hover {
+  background: var(--secondary-text);
+}
+
 input, button, textarea {
+  color: var(--primary-text);
+  font-family: 'Open Sans', sans-serif;
   font-size: 1em;
   padding: 0.5em 0.8em;
   tab-size: 4;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--secondary-text);
 }

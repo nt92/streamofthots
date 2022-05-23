@@ -8,7 +8,7 @@ function UpdateRow(props) {
         "/" + date.getDate() +
         "/" + date.getFullYear() +
         " " + date.getHours() +
-        ":" +date.getMinutes();
+        ":" + ('0' + date.getMinutes()).slice(-2);
 
     return (
         <div key={props.index} className="update">
@@ -16,7 +16,7 @@ function UpdateRow(props) {
                 <Link to={`updates/${props.timestamp}`}>{dayAndTime}</Link>
             </div>
             <div className="update-content">
-                <div key={props.title} className="update-title">
+                <div key={props.index + props.title} className="update-title">
                     <h3 className="title-text">{props.title}</h3>
                 </div>
                 <div key={props.updateText} className="update-text">
@@ -27,4 +27,4 @@ function UpdateRow(props) {
     )
 }
 
-export default UpdateRow
+export default UpdateRow;

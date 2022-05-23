@@ -54,7 +54,7 @@ function UpdatesList() {
 
     return (
         <div>
-            <h1>Nikhil's Stream of Thots 🌊</h1>
+            <h1>Stream of Thots 🌊</h1>
             <p className="subtitle">{updatesCount} matching updates</p>
             <main>
                 <form
@@ -88,10 +88,10 @@ function UpdatesList() {
                 ) : null}
                 <div className="pagination">
                     {parseInt(searchParams.get("page") || 0) > 0 ? (
-                        <button onClick={handleBackClick}>⏪</button>
+                        <button className="pagination-button" onClick={handleBackClick}>←</button>
                     ): null}
                     {parseInt(searchParams.get("page") || 0) <= (updatesCount / ITEMS_PER_PAGE - 1) ? (
-                        <button onClick={handleForwardClick}>⏩</button>
+                        <button className="pagination-button" onClick={handleForwardClick}>→</button>
                     ): null}
                 </div>
             </main>

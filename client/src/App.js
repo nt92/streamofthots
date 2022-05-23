@@ -2,17 +2,12 @@ import UpdatesList from "./components/updatesList";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import SingleUpdatePage from "./components/singleUpdatePage";
 import AuthorPage from "./components/authorPage";
+import AppHeader from "./components/appHeader";
 
 function App() {
   return (
       <BrowserRouter>
-          <header>
-              <a href="/" className="logo">streamofthots</a>
-              <nav>
-                  {/*<a href="/about/">about</a>*/}
-                  {/*<button>light/dark</button>*/}
-              </nav>
-          </header>
+          <AppHeader />
           <Routes>
               <Route path="/" element={<UpdatesList />} />
               <Route path="/author" element={<AuthorPage />} />
