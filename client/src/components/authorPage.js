@@ -6,7 +6,7 @@ function AuthorPage() {
     const [createTimestamp, setCreateTimestamp] = useState(0)
     const [updateText, setUpdateText] = useState("")
     const [deleteTimestamp, setDeleteTimestamp] = useState(0)
-    const [isMacc, setIsMacc] = useState(false)
+    // const [isMacc, setIsMacc] = useState(false)
 
     const handleCreateUpdate = () => {
         const timestamp = createTimestamp === 0 ?
