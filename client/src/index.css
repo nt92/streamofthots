@@ -46,21 +46,6 @@
 /* Colors */
 
 body {
-  /*EXPERIMENTATION*/
-  /*--primary-bg: #E7E9F9;*/
-  /*--primary-text: #151416;*/
-  /*--secondary-bg: #eeeef3;*/
-  /*--secondary-text: #848484;*/
-  /*--hover-bg: #4d4e62;*/
-  /*--active-bg: #3A3B47;*/
-
-  /*--dark-primary-bg: #d4a373;*/
-  /*--dark-primary-text: #ebebeb;*/
-  /*--dark-secondary-bg: #30373a;*/
-  /*--dark-secondary-text: #a4a7a9;*/
-  /*--dark-hover-bg: #474c50;*/
-  /*--dark-active-bg: #626569;*/
-
   --primary-bg: #fdfeff;
   --primary-text: #111111;
   --secondary-bg: #eeeef3;

@@ -2,12 +2,16 @@ import {useState} from "react";
 import {createUpdate, deleteUpdate} from "../utils/api";
 
 function AuthorPage() {
-    const [updateText, setUpdateText] = useState("")
     const [title, setTitle] = useState("")
+    const [createTimestamp, setCreateTimestamp] = useState(0)
+    const [updateText, setUpdateText] = useState("")
     const [deleteTimestamp, setDeleteTimestamp] = useState(0)
+    const [isMacc, setIsMacc] = useState(false)
 
     const handleCreateUpdate = () => {
-        const timestamp = Math.floor(Date.now()/1000);
+        const timestamp = createTimestamp === 0 ?
+            (Math.floor(Date.now()/1000)) :
+            createTimestamp;
         createUpdate(timestamp, title, updateText).then()
     }
 
@@ -47,6 +51,10 @@ function AuthorPage() {
                 <form
                     className="author-create"
                     onSubmit={handleCreateUpdate}>
+                    <input
+                        placeholder="(optional) timestamp"
+                        type="number"
+                        onChange={e => setCreateTimestamp(parseInt(e.target.value))}/>
                     <input
                         placeholder="title"
                         onChange={e => setTitle(e.target.value)}/>
