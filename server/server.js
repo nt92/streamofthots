@@ -18,7 +18,7 @@ app.get("/stream-server", (req, res) => {
    res.send("Express Proxy Pass!");
 });
 
-app.get("/updates_search", async (req, res) => {
+app.get("/stream-server/updates_search", async (req, res) => {
    const num = 10;
    const offset = req.query.offset === null ? 0 : req.query.offset;
    const search = req.query.search === null ? "" : req.query.search;
@@ -26,24 +26,24 @@ app.get("/updates_search", async (req, res) => {
    res.status(200).json({updates});
 });
 
-app.get("/updates_search_count", async (req, res) => {
+app.get("/stream-server/updates_search_count", async (req, res) => {
    const search = req.query.search ?? "";
    const count = await db.getSomeUpdatesSearchCount(search);
    res.status(200).json({count});
 })
 
-app.get("/update_by_timestamp", async (req, res) => {
+app.get("/stream-server/update_by_timestamp", async (req, res) => {
    const timestamp = req.query.timestamp;
    const update = await db.getUpdateByTimestamp(timestamp);
    res.status(200).json({update});
 });
 
-app.post("/create", async (req, res) => {
+app.post("/stream-server/create", async (req, res) => {
    const results = await db.createUpdate(req.body);
    res.status(201).json({ id: results[0] });
 });
 
-app.delete("/delete", async (req, res) => {
+app.delete("/stream-server/delete", async (req, res) => {
    const timestamp = req.query.timestamp
    const results = await db.deleteUpdate(timestamp);
    res.status(201).json({ id: results[0] });
