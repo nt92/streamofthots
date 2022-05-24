@@ -20,7 +20,9 @@ function UpdateRow(props) {
                     <h3 className="title-text">{props.title}</h3>
                 </div>
                 <div key={props.updateText} className="update-text">
-                    <ReactMarkdown>{props.updateText}</ReactMarkdown>
+                    <ReactMarkdown>
+                        {props.updateText}
+                    </ReactMarkdown>
                 </div>
             </div>
         </div>

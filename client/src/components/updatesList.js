@@ -82,6 +82,7 @@ function UpdatesList() {
                                 timestamp={timestamp}
                                 updateText={updateText}
                                 title={title}
+                                searchTerm={searchParams.get("search") || ""}
                             />
                         ))}
                     </div>
