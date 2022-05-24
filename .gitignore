@@ -3,6 +3,7 @@ db/stream.*
 node_modules
 
 # misc
+.env
 .idea
 .DS_Store
 .env.local

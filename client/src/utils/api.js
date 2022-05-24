@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const getBaseURL = () => {
-    const prodServer = process.env.PROD_IP;
+    const prodServer = process.env.REACT_APP_PROD_IP;
     switch (process.env.REACT_APP_ENV) {
         case 'development':
             return 'http://localhost:4200'
