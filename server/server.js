@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/updates_search", async (req, res) => {
-   const num = req.query.num ?? 10;
+   const num = 10;
    const offset = req.query.offset ?? 0;
    const search = req.query.search ?? "";
    const updates = await db.getSomeUpdatesSearch(num, offset, search);
