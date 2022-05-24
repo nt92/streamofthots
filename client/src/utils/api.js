@@ -1,6 +1,18 @@
 import axios from 'axios';
 
-export const baseURL = "http://localhost:4200"
+const getBaseURL = () => {
+    const prodServer = process.env.PROD_IP;
+    switch (process.env.REACT_APP_ENV) {
+        case 'development':
+            return 'http://localhost:4200'
+        case 'production':
+            return prodServer
+        default:
+            return ''
+    }
+}
+
+export const baseURL = getBaseURL();
 
 export const getSomeUpdatesSearch = async (num, offset, search) => {
     const res = await axios.request({
