@@ -8,15 +8,20 @@ function AuthorPage() {
     const [deleteTimestamp, setDeleteTimestamp] = useState(0)
     // const [isMacc, setIsMacc] = useState(false)
 
-    const handleCreateUpdate = () => {
+    const handleCreateUpdate = (event) => {
+        event.preventDefault();
         const timestamp = createTimestamp === 0 ?
             (Math.floor(Date.now()/1000)) :
             createTimestamp;
-        createUpdate(timestamp, title, updateText).then()
+        createUpdate(timestamp, title, updateText).then(() => {
+            window.location.reload()
+        });
     }
 
     const handleDeleteUpdate = () => {
-        deleteUpdate(deleteTimestamp).then()
+        deleteUpdate(deleteTimestamp).then(() => {
+           window.location.reload()
+        });
     }
 
     const handleKeyDown = (event) => {
