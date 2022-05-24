@@ -14,6 +14,10 @@ app.get("/", (req, res) => {
    res.send("Express!");
 });
 
+app.get("/stream-server", (req, res) => {
+   res.send("Express Proxy Pass!");
+});
+
 app.get("/updates_search", async (req, res) => {
    const num = 10;
    const offset = req.query.offset === null ? 0 : req.query.offset;
