@@ -6,7 +6,9 @@ This project is essentially my attempt to kill a few birds with one stone.
 
 For starters, my writing output was (self-imposed) limited by the fact that I find it difficult to publish unless things are deeply polished — for the more ephemeral stuff, it felt weird posting on Twitter (even though that's probably what it's for). In the past I've experimented with lightform [`/notes`](https://nikhilthota.com/notes/) but that didn't really work either. Thus, I decided to handroll something for myself that fits exactly what I want to do.
 
-Second, I wanted to build a full-stack web app end-to-end 
+Second, I wanted to build a full-stack web app end-to-end using a few interesting technologes. I wanted to see if it was possible to host a SQLite database directly on the client-side using the magic of `WASM` compilation — in the end I decided to just go the React / Node / SQLite chad-app route.
+
+Third, I wanted to see how I could re-imagine social sharing with the whole Twitter debacle going on right now (it's May 2022) *without* going the Web3 route of [Lens Protocol](https://lens.xyz/) just quite yet. 
 
 *This stream was inspired deeply in functionality and design by [Linus](https://stream.thesephist.com/). I essentially rewrote his elegant implementation written in `Oak` into a `React` webapp with a lightweight `Node.js` backend and a `SQLite` database.*
 
@@ -27,9 +29,11 @@ This site features a few cool things:
 * You can click into individual stream updates and share them
 * Full markdown support (ty React libraries)
 
-### Future
+### 🔮 Future
 
 There are quite a few things I can add to this site to make it a bit more rich & fun
 * The ability for someone else to have their own account and post, creating a "hive mind" of sorts
 * A dope wave `.svg` animation — I tried to do this for like 2 hours but couldn't figure out how to get it to stick to the bottom of the stream correctly
 * Highlighting when you search a term
+* An RSS feed similar to a blog where people can subscribe to my stream
+* Let people interact with the stream! Maybe even through Web3 integrations 👀
