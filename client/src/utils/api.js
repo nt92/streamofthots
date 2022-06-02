@@ -4,7 +4,7 @@ const getBaseURL = () => {
     const prodServer = process.env.REACT_APP_PROD_IP;
     switch (process.env.REACT_APP_ENV) {
         case 'development':
-            return 'http://localhost:4200'
+            return 'http://localhost:4200/stream-server'
         case 'production':
             return prodServer
         default:
@@ -41,11 +41,12 @@ export const getUpdateByTimestamp = async (timestamp) => {
     return res.data
 }
 
-export const createUpdate = async (timestamp, title, updateText) => {
+export const createUpdate = async (timestamp, title, updateText, isMacc) => {
     const body = {
         timestamp: timestamp,
         title: title,
-        updateText: updateText
+        updateText: updateText,
+        isMacc: isMacc
     }
     const res = await axios.request({
         method: 'post',

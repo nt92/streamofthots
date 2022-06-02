@@ -23,6 +23,7 @@ function SingleUpdatePage() {
                         timestamp={update.update[0].timestamp}
                         updateText={update.update[0].updateText}
                         title={update.update[0].title}
+                        isMacc={update.update[0].isMacc}
                     />
                 </div>
             ) : null}

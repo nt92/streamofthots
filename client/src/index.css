@@ -304,6 +304,17 @@ header, h1, main, .subtitle {
 
 /* Author Page */
 
+.checkbox {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+}
+
+.check-label {
+  margin-right: -125px;
+  margin-bottom: 12px;
+}
+
 form textarea {
   min-height: 50vh;
   line-height: 1.5em;

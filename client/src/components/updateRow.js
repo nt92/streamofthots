@@ -14,6 +14,9 @@ function UpdateRow(props) {
         <div key={props.index} className="update">
             <div key={props.timestamp} className="update-time">
                 <Link to={`updates/${props.timestamp}`}>{dayAndTime}</Link>
+                {props.isMacc ? (
+                    <div>macc</div>
+                ) : null}
             </div>
             <div className="update-content">
                 <div key={props.index + props.title} className="update-title">

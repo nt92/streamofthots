@@ -75,13 +75,14 @@ function UpdatesList() {
                 </form>
                 {updates.length !== 0 ? (
                     <div className="feed">
-                        {updates.updates.map(({timestamp, updateText, title}, index) => (
+                        {updates.updates.map(({timestamp, updateText, title, isMacc}, index) => (
                             <UpdateRow
                                 key={index}
                                 index={index}
                                 timestamp={timestamp}
                                 updateText={updateText}
                                 title={title}
+                                isMacc={isMacc}
                                 searchTerm={searchParams.get("search") || ""}
                             />
                         ))}

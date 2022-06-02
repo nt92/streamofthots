@@ -6,14 +6,14 @@ function AuthorPage() {
     const [createTimestamp, setCreateTimestamp] = useState(0)
     const [updateText, setUpdateText] = useState("")
     const [deleteTimestamp, setDeleteTimestamp] = useState(0)
-    // const [isMacc, setIsMacc] = useState(false)
+    const [isMacc, setIsMacc] = useState(false)
 
     const handleCreateUpdate = (event) => {
         event.preventDefault();
         const timestamp = createTimestamp === 0 ?
             (Math.floor(Date.now()/1000)) :
             createTimestamp;
-        createUpdate(timestamp, title, updateText).then(() => {
+        createUpdate(timestamp, title, updateText, isMacc).then(() => {
             window.location.reload()
         });
     }
@@ -56,6 +56,13 @@ function AuthorPage() {
                 <form
                     className="author-create"
                     onSubmit={handleCreateUpdate}>
+                    <div className="checkbox">
+                        <input
+                            type="checkbox"
+                            checked={isMacc}
+                            onChange={() => setIsMacc(!isMacc)}/>
+                        <div className="check-label">Is Dis Macc? 🐈</div>
+                    </div>
                     <input
                         placeholder="(optional) timestamp"
                         type="number"
